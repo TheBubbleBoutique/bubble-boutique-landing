@@ -53,13 +53,14 @@
   .fleck{
     position:absolute;
     border-radius:50%;
-    background:var(--gold);
+    background:radial-gradient(circle, #F4DFA0 0%, var(--gold) 60%, transparent 100%);
+    box-shadow:0 0 8px 2px rgba(198,161,83,0.55);
     opacity:0;
     animation:twinkle ease-in-out infinite;
   }
   @keyframes twinkle{
-    0%, 100%{ opacity:0; transform:scale(0.6); }
-    50%{ opacity:0.85; transform:scale(1); }
+    0%, 100%{ opacity:0; transform:scale(0.5); }
+    50%{ opacity:1; transform:scale(1); }
   }
   @media (prefers-reduced-motion: reduce){
     .fleck{ animation:none; opacity:0.35; }
@@ -185,7 +186,7 @@
 
     <div class="choices">
       <!-- TODO: replace with your real Airtable Dogs intake form share link -->
-      <a class="choice new" href="https://airtable.com/YOUR_INTAKE_FORM_LINK">
+      <a class="choice new" href="intake.html">
         <span class="icon">🐾</span>
         <span class="choice-text">
           <strong>New Customer</strong>
@@ -194,7 +195,7 @@
       </a>
 
       <!-- TODO: replace with your real Airtable Bookings form share link -->
-      <a class="choice returning" href="https://airtable.com/YOUR_BOOKING_FORM_LINK">
+      <a class="choice returning" href="booking.html">
         <span class="icon">📅</span>
         <span class="choice-text">
           <strong>Returning Customer</strong>
@@ -208,17 +209,17 @@
 
 <script>
   const field = document.getElementById('sparkles');
-  const count = window.innerWidth < 480 ? 18 : 28;
+  const count = window.innerWidth < 480 ? 22 : 34;
   for (let i = 0; i < count; i++) {
     const f = document.createElement('div');
     f.className = 'fleck';
-    const size = 2 + Math.random() * 4;
+    const size = 5 + Math.random() * 8;
     f.style.width = size + 'px';
     f.style.height = size + 'px';
     f.style.left = Math.random() * 100 + '%';
     f.style.top = Math.random() * 100 + '%';
-    f.style.animationDuration = (2 + Math.random() * 3.5) + 's';
-    f.style.animationDelay = (Math.random() * 4) + 's';
+    f.style.animationDuration = (1.4 + Math.random() * 2.2) + 's';
+    f.style.animationDelay = (Math.random() * 2.5) + 's';
     field.appendChild(f);
   }
 </script>
