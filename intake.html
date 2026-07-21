@@ -126,6 +126,32 @@
     text-align:center;
   }
 
+  a.next-step{
+    position:relative;
+    z-index:1;
+    margin-top:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--ink);
+    background:linear-gradient(155deg, var(--gold), var(--gold-deep));
+    border-radius:16px;
+    padding:16px 26px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:16px;
+    box-shadow:0 8px 22px rgba(198,161,83,0.35);
+    transition:transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  a.next-step:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(198,161,83,0.45);
+  }
+  a.next-step:active{ transform:scale(0.98); }
+  a.next-step .arrow{ font-size:18px; }
+
   a.back-link{
     position:relative;
     z-index:1;
@@ -152,6 +178,11 @@
     <div class="form-card">
       <iframe class="airtable-embed" src="https://airtable.com/embed/appvmPn1xPrVXN0uQ/shroUZ70RaHVr6xPM" frameborder="0" onmousewheel="" style="background: transparent; border: none;"></iframe>
     </div>
+
+    <a class="next-step" href="booking.html">
+      <span>All done? Book your first visit</span>
+      <span class="arrow">→</span>
+    </a>
   </main>
 
   <footer>THE BUBBLE BOUTIQUE &middot; @the_bubble_boutique_</footer>
