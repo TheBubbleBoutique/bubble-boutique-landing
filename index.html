@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New Client Intake · The Bubble Boutique</title>
+<title>The Bubble Boutique</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#F3E8D2;
+    --champagne:#E9D9B8;
     --gold:#C6A153;
     --gold-deep:#A8813A;
+    --dustyblue:#AFCBD4;
+    --dustyblue-deep:#7FA4B0;
     --ink:#1C1A16;
     --card:#FBF6EA;
   }
@@ -18,9 +21,11 @@
   *{ box-sizing:border-box; margin:0; padding:0; }
 
   html,body{
+    height:100%;
     background:var(--cream);
     font-family:'Nunito Sans', sans-serif;
     color:var(--ink);
+    overflow-x:hidden;
   }
 
   body{
@@ -28,14 +33,16 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    padding:36px 16px 56px;
+    justify-content:center;
+    padding:36px 20px 40px;
     position:relative;
     background:
-      radial-gradient(circle at 15% 10%, rgba(198,161,83,0.14) 0, transparent 40%),
-      radial-gradient(circle at 90% 85%, rgba(198,161,83,0.12) 0, transparent 42%),
+      radial-gradient(circle at 15% 20%, rgba(198,161,83,0.16) 0, transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(198,161,83,0.14) 0, transparent 42%),
       var(--cream);
   }
 
+  /* --- signature element: drifting gold flecks, echoing the logo's glitter ground --- */
   .sparkle-field{
     position:fixed;
     inset:0;
@@ -47,121 +54,123 @@
     position:absolute;
     border-radius:50%;
     background:radial-gradient(circle, #F4DFA0 0%, var(--gold) 60%, transparent 100%);
-    box-shadow:0 0 8px 2px rgba(198,161,83,0.5);
+    box-shadow:0 0 8px 2px rgba(198,161,83,0.55);
     opacity:0;
     animation:twinkle ease-in-out infinite;
   }
   @keyframes twinkle{
     0%, 100%{ opacity:0; transform:scale(0.5); }
-    50%{ opacity:0.9; transform:scale(1); }
+    50%{ opacity:1; transform:scale(1); }
   }
   @media (prefers-reduced-motion: reduce){
-    .fleck{ animation:none; opacity:0.3; }
+    .fleck{ animation:none; opacity:0.35; }
   }
 
   main{
     position:relative;
     z-index:1;
     width:100%;
-    max-width:620px;
+    max-width:420px;
     display:flex;
     flex-direction:column;
     align-items:center;
+    text-align:center;
   }
 
   .logo-wrap{
-    width:min(60vw, 220px);
-    border-radius:24px;
+    width:min(84vw, 320px);
+    border-radius:28px;
     overflow:hidden;
-    box-shadow:0 14px 34px rgba(28,26,22,0.16);
-    margin-bottom:16px;
+    box-shadow:0 14px 34px rgba(28,26,22,0.18);
+    margin-bottom:22px;
     background:var(--card);
-    padding:8px;
+    padding:10px;
   }
   .logo-wrap img{
     width:100%;
     height:auto;
     display:block;
-    border-radius:16px;
+    border-radius:20px;
   }
 
   p.lede{
     font-family:'Fraunces', serif;
     font-style:italic;
     font-weight:500;
-    font-size:clamp(17px, 4.2vw, 19px);
+    font-size:clamp(18px, 4.6vw, 21px);
     color:var(--ink);
     opacity:0.85;
-    text-align:center;
-    max-width:400px;
+    max-width:300px;
     line-height:1.5;
-    margin-bottom:26px;
   }
 
-  .form-card{
+  .choices{
     width:100%;
+    margin-top:32px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .choice{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--ink);
     background:var(--card);
-    border-radius:24px;
-    padding:14px;
-    box-shadow:0 10px 30px rgba(28,26,22,0.12);
-    border:1.5px solid rgba(198,161,83,0.3);
+    border-radius:18px;
+    padding:18px 20px;
+    box-shadow:0 6px 18px rgba(28,26,22,0.10);
+    border:1.5px solid rgba(198,161,83,0.35);
+    text-align:left;
+    transition:transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .choice:active{ transform:scale(0.98); }
+  .choice:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 26px rgba(28,26,22,0.16);
   }
 
-  iframe.airtable-embed{
-    width:100%;
-    min-height:1500px;
-    border-radius:16px;
+  .choice.new:hover{ border-color:var(--gold); }
+  .choice.returning:hover{ border-color:var(--dustyblue-deep); }
+
+  .icon{
+    flex:0 0 auto;
+    width:46px;
+    height:46px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+  }
+  .choice.new .icon{ background:linear-gradient(155deg, var(--gold), var(--gold-deep)); }
+  .choice.returning .icon{ background:linear-gradient(155deg, var(--dustyblue), var(--dustyblue-deep)); }
+
+  .choice-text strong{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:17px;
     display:block;
+    letter-spacing:0.01em;
+  }
+  .choice-text span{
+    font-size:13.5px;
+    font-weight:600;
+    opacity:0.62;
   }
 
   footer{
     position:relative;
     z-index:1;
-    margin-top:28px;
+    margin-top:36px;
     font-size:12.5px;
     font-weight:700;
     letter-spacing:0.04em;
     color:var(--ink);
     opacity:0.45;
-    text-align:center;
   }
-
-  a.next-step{
-    position:relative;
-    z-index:1;
-    margin-top:22px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    text-decoration:none;
-    color:var(--ink);
-    background:linear-gradient(155deg, var(--gold), var(--gold-deep));
-    border-radius:16px;
-    padding:16px 26px;
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:16px;
-    box-shadow:0 8px 22px rgba(198,161,83,0.35);
-    transition:transform 0.18s ease, box-shadow 0.18s ease;
-  }
-  a.next-step:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 28px rgba(198,161,83,0.45);
-  }
-  a.next-step:active{ transform:scale(0.98); }
-  a.next-step .arrow{ font-size:18px; }
-
-  a.back-link{
-    position:relative;
-    z-index:1;
-    margin-top:18px;
-    font-size:13.5px;
-    font-weight:700;
-    color:var(--gold-deep);
-    text-decoration:none;
-  }
-  a.back-link:hover{ text-decoration:underline; }
 </style>
 </head>
 <body>
@@ -173,23 +182,34 @@
       <img src="logo.png" alt="The Bubble Boutique — Dog Grooming Spa">
     </div>
 
-    <p class="lede">Welcome! Tell us a bit about your dog so we're ready for your first visit.</p>
+    <p class="lede">Let's get your pup booked in — have we met before?</p>
 
-    <div class="form-card">
-      <iframe class="airtable-embed" src="https://airtable.com/embed/appvmPn1xPrVXN0uQ/shroUZ70RaHVr6xPM" frameborder="0" onmousewheel="" style="background: transparent; border: none;"></iframe>
+    <div class="choices">
+      <!-- TODO: replace with your real Airtable Dogs intake form share link -->
+      <a class="choice new" href="intake.html">
+        <span class="icon">🐾</span>
+        <span class="choice-text">
+          <strong>Register Your Dog</strong>
+          <span>First time here? Start here</span>
+        </span>
+      </a>
+
+      <!-- TODO: replace with your real Airtable Bookings form share link -->
+      <a class="choice returning" href="booking.html">
+        <span class="icon">📅</span>
+        <span class="choice-text">
+          <strong>Book a Visit</strong>
+          <span>Already registered? Book here</span>
+        </span>
+      </a>
     </div>
-
-    <a class="next-step" href="booking.html">
-      <span>All done? Book your first visit</span>
-      <span class="arrow">→</span>
-    </a>
   </main>
 
   <footer>THE BUBBLE BOUTIQUE &middot; @the_bubble_boutique_ &middot; <a href="policies.html" style="color:inherit;">Salon Policies</a></footer>
 
 <script>
   const field = document.getElementById('sparkles');
-  const count = window.innerWidth < 480 ? 16 : 24;
+  const count = window.innerWidth < 480 ? 22 : 34;
   for (let i = 0; i < count; i++) {
     const f = document.createElement('div');
     f.className = 'fleck';
