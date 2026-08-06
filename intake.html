@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Client Intake · The Bubble Boutique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3E8D2;
+    --gold:#C6A153;
+    --gold-deep:#A8813A;
+    --ink:#1C1A16;
+    --card:#FBF6EA;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html,body{
+    background:var(--cream);
+    font-family:'Nunito Sans', sans-serif;
+    color:var(--ink);
+  }
+
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:36px 16px 56px;
+    position:relative;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(198,161,83,0.14) 0, transparent 40%),
+      radial-gradient(circle at 90% 85%, rgba(198,161,83,0.12) 0, transparent 42%),
+      var(--cream);
+  }
+
+  .sparkle-field{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+  }
+  .fleck{
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle, #F4DFA0 0%, var(--gold) 60%, transparent 100%);
+    box-shadow:0 0 8px 2px rgba(198,161,83,0.5);
+    opacity:0;
+    animation:twinkle ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%, 100%{ opacity:0; transform:scale(0.5); }
+    50%{ opacity:0.9; transform:scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .fleck{ animation:none; opacity:0.3; }
+  }
+
+  main{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:620px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .logo-wrap{
+    width:min(60vw, 220px);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 14px 34px rgba(28,26,22,0.16);
+    margin-bottom:16px;
+    background:var(--card);
+    padding:8px;
+  }
+  .logo-wrap img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:16px;
+  }
+
+  p.lede{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(17px, 4.2vw, 19px);
+    color:var(--ink);
+    opacity:0.85;
+    text-align:center;
+    max-width:400px;
+    line-height:1.5;
+    margin-bottom:26px;
+  }
+
+  .form-card{
+    width:100%;
+    background:var(--card);
+    border-radius:24px;
+    padding:14px;
+    box-shadow:0 10px 30px rgba(28,26,22,0.12);
+    border:1.5px solid rgba(198,161,83,0.3);
+  }
+
+  iframe.airtable-embed{
+    width:100%;
+    min-height:1500px;
+    border-radius:16px;
+    display:block;
+  }
+
+  footer{
+    position:relative;
+    z-index:1;
+    margin-top:28px;
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    color:var(--ink);
+    opacity:0.45;
+    text-align:center;
+  }
+
+  a.next-step{
+    position:relative;
+    z-index:1;
+    margin-top:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--ink);
+    background:linear-gradient(155deg, var(--gold), var(--gold-deep));
+    border-radius:16px;
+    padding:16px 26px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:16px;
+    box-shadow:0 8px 22px rgba(198,161,83,0.35);
+    transition:transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  a.next-step:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(198,161,83,0.45);
+  }
+  a.next-step:active{ transform:scale(0.98); }
+  a.next-step .arrow{ font-size:18px; }
+
+  a.back-link{
+    position:relative;
+    z-index:1;
+    margin-top:18px;
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--gold-deep);
+    text-decoration:none;
+  }
+  a.back-link:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+
+  <div class="sparkle-field" id="sparkles"></div>
+
+  <main>
+    <div class="logo-wrap">
+      <img src="logo.png" alt="The Bubble Boutique — Dog Grooming Spa">
+    </div>
+
+    <p class="lede">Welcome! Tell us a bit about your dog so we're ready for your first visit.</p>
+
+    <div class="form-card">
+      <iframe class="airtable-embed" src="https://airtable.com/embed/appvmPn1xPrVXN0uQ/shroUZ70RaHVr6xPM" frameborder="0" onmousewheel="" style="background: transparent; border: none;"></iframe>
+    </div>
+
+    <a class="next-step" href="booking.html">
+      <span>All done? Book your first visit</span>
+      <span class="arrow">→</span>
+    </a>
+  </main>
+
+  <footer>THE BUBBLE BOUTIQUE &middot; @the_bubble_boutique_ &middot; <a href="policies.html" style="color:inherit;">Salon Policies</a></footer>
+
+<script>
+  const field = document.getElementById('sparkles');
+  const count = window.innerWidth < 480 ? 16 : 24;
+  for (let i = 0; i < count; i++) {
+    const f = document.createElement('div');
+    f.className = 'fleck';
+    const size = 5 + Math.random() * 8;
+    f.style.width = size + 'px';
+    f.style.height = size + 'px';
+    f.style.left = Math.random() * 100 + '%';
+    f.style.top = Math.random() * 100 + '%';
+    f.style.animationDuration = (1.4 + Math.random() * 2.2) + 's';
+    f.style.animationDelay = (Math.random() * 2.5) + 's';
+    field.appendChild(f);
+  }
+</script>
+
+</body>
+</html>
